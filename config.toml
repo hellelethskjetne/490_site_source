@@ -9,8 +9,8 @@ googleAnalytics = "" # Enable Google Analytics by entering your tracking id
 
 [Author] # Used in authorbox
   name = "Drew Steen"
-  bio = ""
-  avatar = "img/avatar.png"
+  bio = "I like science and stuff"
+  avatar = "img/drew_MJ.png"
 
 [Params]
   subtitle = "" # Deprecated in favor of .Site.Params.logo.subtitle
@@ -43,9 +43,9 @@ googleAnalytics = "" # Enable Google Analytics by entering your tracking id
   fontFamilySecondary = "SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
 
 [Params.logo]
-  image = "img/placeholder.png" # Logo image. Path relative to "static"
-  title = "Mainroad" # Logo title, otherwise will use site title
-  subtitle = "Just another site" # Logo subtitle
+  image = "img/svalbard_sky.jpg" # Logo image. Path relative to "static"
+  title = "Reproducible Data Analysis" # Logo title, otherwise will use site title
+  subtitle = "Public site for UT-Knoxville MICR 493/594; GEOL 490/590ß" # Logo subtitle
 
 [Params.sidebar]
   home = "right" # Configure layout for home page
@@ -78,8 +78,8 @@ googleAnalytics = "" # Enable Google Analytics by entering your tracking id
 #  url = "https://youtube.com/user/username"
 #  icon = "youtube.svg" # Optional. Path relative to "layouts/partials"
 
-[[Params.widgets.social.custom]]
-  title = "Steen Lab Website"
-  url = "http://adsteen.github.io"
+# [[Params.widgets.social.custom]]
+#  title = "Steen Lab Website"
+#  url = "http://adsteen.github.io"
 
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
