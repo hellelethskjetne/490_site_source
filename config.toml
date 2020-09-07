@@ -81,3 +81,5 @@ googleAnalytics = "" # Enable Google Analytics by entering your tracking id
 [[Params.widgets.social.custom]]
   title = "Steen Lab Website"
   url = "http://adsteen.github.io"
+
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
