@@ -1,4 +1,4 @@
-baseURL = "http://adsteen.github.io/"
+baseURL = "/data_analysis_2020/"
 languageCode = "en-us"
 title = "Reproducible Data Analysis"
 
@@ -19,8 +19,8 @@ googleAnalytics = "" # Enable Google Analytics by entering your tracking id
   opengraph = true # Enable OpenGraph if true
   schema = true # Enable Schema
   twitter_cards = true # Enable Twitter Cards if true
-  readmore = false # Show "Read more" button in list if true
-  authorbox = true # Show authorbox at bottom of pages if true
+  readmore = true # Show "Read more" button in list if true
+  authorbox = false # Show authorbox at bottom of pages if true
   toc = true # Enable Table of Contents
   pager = true # Show pager navigation (prev/next links) at the bottom of pages if true
   post_meta = ["author", "date", "categories", "translations"] # Order of post meta information
@@ -46,7 +46,7 @@ googleAnalytics = "" # Enable Google Analytics by entering your tracking id
 [Params.logo]
   image = "img/svalbard_sky.jpg" # Logo image. Path relative to "static"
   title = "Reproducible Data Analysis" # Logo title, otherwise will use site title
-  subtitle = "Public site for UT-Knoxville MICR 493/594; GEOL 490/590ß" # Logo subtitle
+  subtitle = "Public site for UT-Knoxville MICR 493/594; GEOL 490/590" # Logo subtitle
 
 [Params.sidebar]
   home = "right" # Configure layout for home page
