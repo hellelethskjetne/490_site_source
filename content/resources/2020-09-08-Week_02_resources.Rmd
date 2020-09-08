@@ -1,0 +1,29 @@
+---
+title: "Week 2 resources"
+author: ~
+date: '2020-09-08'
+slug: "week-2-resources"
+categories: [resources]
+tags: [week02]
+draft: false
+# toc: true
+---
+
+```{r setup, echo = FALSE}
+knitr::opts_chunk$set(eval=FALSE)
+```
+
+**to be updated**
+
+* This week has a bunch of R basics. Chapters [1](https://r4ds.had.co.nz/explore-intro.html) and [4](https://r4ds.had.co.nz/workflow-basics.html) of R for Data Science are a good place to start. However, I would like you all to practice your Git/Github skills by adding introductory references to this list.
+
+To do that:
+
+* Go to [https://github.com/adsteen/490_site_source](https://github.com/adsteen/490_site_source), which contains the source code for this website
+* Press the "Fork" link to make a copy of that Git "repo" (repository)
+* On your version of this repository on the GitHub website (it'll be labeled `your-user-name/490_site_source`, navigate to `contents/resources/2020-09-08-Week_02-resources.Rmd`
+* Press the little pencil button, on the top-right of the code, to edit it
+* Add a link to a resource. To make a nice hyperlink, type the text that goes into the link followed by the URL like this: `[Google](https://www.google.com)`
+* Press the green "commit changes" button at the bottom of the screen
+* Press the "pull requests" tab near the top of the screen, and then press the green "new pull request" button. Add a message in the box, and type "create pull request". This will send a request to me to incorporate your changes into the git repo.
+
