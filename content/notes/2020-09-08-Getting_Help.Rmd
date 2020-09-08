@@ -1,0 +1,69 @@
+---
+title: "Getting help in R"
+author: ~
+date: '2020-09-08'
+slug: "help"
+categories: [notes]
+tags: [basics]
+draft: false
+# toc: true
+---
+
+```{r setup, echo = FALSE}
+knitr::opts_chunk$set(eval=FALSE)
+```
+
+# Help on specific functions
+
+Every function in R has a an associated documentaion file. In RStudio, typing the name of the function, prefaced by `?`, will pull up the documentation for that function. For instance, try `?sum`[On my machine, RStudio sometimes gets over-excited about auto-completing and tries to fill in the name of a longer function. Just type backspace when that happens.] (you don't need the `()`):  in the lower-right-hand panel of RStudio you'll see a documentation displayed.
+
+## Parts of an R documentation file
+
+The documentation in R has a very specific format:
+
+* **Function name and package** On the upper left is the name of the function, followed by \{the package it is in\}. Note that R frequently groups documentation for multiple functions, so the function name you see may not be what you actually searched on.
+* **Title**
+* **Description** aims to provide a plain language description of the function
+* **Usage** shows how to call the function. The words in the parentheses are *arguments* that you can pass to the function when you call it. More on what that means [here](./2020-09-08-What_is_a_function.html). Arguments that contain an `=` indicate a default: for instance, in `sum()`, `na.rm` is set to `TRUE` unless you specify otherwise. When you call a function, you must specify all arguments that don't have a default value.
+* **Arguments** A longer description of what each argument is. Generally the documentation will make clear what kind of object each argument should be (a vector? a list?). 
+* **Details** and **Note** often provide useful tidbits of information about the function. If you are having trouble with the function, be sure to read these sections carefully.
+* **Value** tells you what kind of object the function returns. This is critical to using the result of the function properly.
+* **Examples** provide sometimes hard-to-understand examples of how use the code. 
+
+# Help on packages
+
+R has two major sources of documentation for packages. For every package on CRAN, there is a PDF file that contains the formal documentation for each function in it, for instance [here](https://cran.r-project.org/package=dplyr). This can be a useful reference, but is generally not a great way to get a sense of how to use the package. 
+
+**Vignettes** provide a practical introduction to using the package. Packages are not required to have a vignette, and some have more than one. You can find any vignettes for a package on the CRAN documentation page for that package. You can also list vignettes using the syntax `vignette(package = "package-name")` (replace `package-name` with the actual name of the package, in quotation marks) and then launch the vignette from RStudio using the syntax, for instance `vignette(name-of-vignette)`. 
+
+# Help on sticky problems
+
+It is exceedingly unlikely that, as a new coder, you are the first person in the world to face any given problem. It is very likely that someone else has faced that problem before and put the solution on the internet. So I frequently find myself googling phrases like `R how to add dendrogram to heatmap`. 
+
+## Confusing error messages
+
+Error messages in R are often difficult to interpret. The message "[object of type closure is not subsettable](https://www.r-bloggers.com/object-of-type-closure-is-not-subsettable/)" is infamously common and opaque. When you are confused by an error message,
+
+1. Be sure to read it. It might seem like gibberish, but you might be able to make some sense of it! 
+2. **Google the error message**. Read explanations of what the error means, and how to fix it.
+
+## Stack Overflow
+
+[Stack Overflow](https://www.stackoverflow.com) is a website for people to ask and answer specific software questions. As of early September 2020, there are [more than 360,000 questions](https://stackoverflow.com/questions/tagged/r) about R. Whatever question you have, chances are it has already been answered on Stack Overflow! As you are learning, you will probably not need to ask a new question - the trick to finding your answer is usually finding the correct search term for your question. If you don't find an answer at first, try phrasing your question in different ways.
+
+If you do want to ask a question on Stack Overflow - or to anyone else - there is a very specific way to create a good question. An excellent guide to good SO questions is [here](https://stackoverflow.com/help/minimal-reproducible-example). To summarize, your question should be:
+
+* **Minimal**: It should have absolutely the least amount of code possible to recreate the problem. 
+* **Reproducible**: The question should contain everything another user needs to recreate the problem, including source data.
+
+Usually the easiest way to do this is to recreate our problem from the ground up: create a very simple data set from scratch, for instance
+
+`
+my.data <- c(1, 2, 3)
+`
+
+or, if you need something a little more complex, use one of the data sets built into R like `mtcars` that is present when R starts up. Then, use the simplest amount of code required to re-create your problem. 
+
+This is great advice for asking anyone a software question, not just Stack Overflow. In fact, the best part about it is that simplifying your problem is often the best way to see what the problem is. I haven't posted a question on Stack Overflow in years, because when I work on creating my minimal, reproducible example, I generally figure out for myself what I was doing wrong!
+
+

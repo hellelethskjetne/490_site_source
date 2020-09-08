@@ -1,0 +1,15 @@
+---
+title: "What is a Function?"
+author: ~
+date: '2020-09-08'
+slug: "functions"
+categories: [notes]
+tags: [basics]
+draft: true
+# toc: true
+---
+
+```{r setup, echo = FALSE}
+knitr::opts_chunk$set(eval=FALSE)
+```
+
