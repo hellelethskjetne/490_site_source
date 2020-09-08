@@ -1,0 +1,77 @@
+---
+title: "Intro to packages"
+author: ~
+date: '2020-09-08'
+slug: "packages"
+categories: [notes]
+tags: [basics]
+draft: false
+# toc: true
+---
+
+```{r setup, echo = FALSE}
+knitr::opts_chunk$set(eval=FALSE)
+```
+
+
+Like all programming languages, R relies on a *base* language, which is extended by *packages*. When you installed R, you only installed the base language^[Strictly speaking there are a couple of packages that come with base R, including **stats**, **graphics**, and **utils**. By default those are also loaded when you start R, unlike other packages, so for all intents and purposes those act like they're part of base R]. However, base R can only do so much. 
+
+Most of R's power lies is in its packages. Need to do timeseries forecasting? You'll want the [**forecast**]() package. Need to do multivariate statistics? [**vegan**]() is world-leading. Currently there are more than 16,000 packages listed on [CRAN](https://cran.r-project.org/web/packages/index.html) for basically every task you can imagine. 
+
+## Using pacakges
+
+An R package is really just a collection of R code plus some accessory files that help you and R to know how to use that code, organized in a specific way. Later in the course we will build our own packages. 
+
+In order to use a package, you must:
+
+1. *Install* the package, which is to say, download it from the internet and save it in an appropriate place on your hard drive, and
+2. *Load* the package into your computer's memory.
+
+## Installing packages
+
+You only have to install a package once - until you upgrade R, at which point you should reinstall your packages. R makes it easy to install packages from CRAN using the `install.packages()` function. For instance, to install the **vegan** package, type the following at the console:
+```{r}
+install.packages("vegan")
+```
+Note the quotation marks around `"vegan"`. Note also that it will never make sense to put this in a script, since you don't want to install a package every time you run a script. (And it is rather rude to share a script with someone else that installs a package without asking.) You should only ever run `install.packages()` from the R console.
+
+`install.packages()` will download a package directly to your *library*, which is the name of the directory or directories that store your R packages. You can determine your library using the `.libPaths()` function - my library is at `"/Library/Frameworks/R.framework/Versions/4.0/Resources/library"`. It is also possible to install packages from places like GitHub using procedures we'll talk about later.
+
+## Loading packages
+
+Every time you open RStudio, or change projects, you need to load whatever packages you're going to use. The function `library()` loads a package^[You'll also see `require()` used to load packages. This is mostly equivalent to `library()` but there are a few techical reasons, described [here](https://yihui.org/en/2014/07/library-vs-require/), to prefer `library()`]
+
+You should load each package your script needs at the top of the script, so that readers will know what packages the script uses. For instance:
+
+```{r}
+#############
+# We always start scripts with a header comment
+#############
+
+# Load all packages that this script uses
+library(tidyverse)
+library(vegan)
+```
+
+Note that `library()` takes the name of the function **without quotation marks**, e.g. `library(vegan)`, while `install.packages()` takes the name of the package inside quotation marks, e.g. `install.packages("vegan")`.
+
+### What `library()` does
+
+Strictly speaking, `library()` *attaches* a package to the search path, rather than loading it into memory. The search path is the set of directories that R will look through when you tell it to access a function. We can see a summary of our search path with the `search()` function. We'll discuss more about what the search path does, but for now, try the following: type `search()` in the console, then load a new package using `library()`, and type `search()` again.
+
+
+# The **tidyverse**
+
+**tidyverse** is kind of a weird package because it is three things at once:
+
+* An R package, which exists to load a couple of dozen other R packages
+* A name for the set of R packages that **tidyverse** loads, and
+* A philosophy about how best to do data analysis.
+
+We'll talk more about the philosophy and specific packages in **tidyverse** later. The thing to know for now is that **using R with the tidyverse is very different from using base R**. Tidyverse demands a fundamentally different way of thinking about data analysis. I happen to think that the tidyverse philosophy is a better way of thinking about data analysis, although [not](https://blog.ephorie.de/why-i-dont-use-the-tidyverse) [all](https://github.com/matloff/TidyverseSkeptic) [people](https://towardsdatascience.com/a-thousand-gadgets-my-thoughts-on-the-r-tidyverse-2441d8504433) agree.
+
+Nevertheless, we are going to teach this course using the tidyverse philosophy, which you can learn more about on the [tidyverse website](https://www.tidyverse.org/). So, for this course, your scripts will just about always start with `library(tidyverse)`. 
+
+### Installing vs loading packages
+
+### Getting help on packages

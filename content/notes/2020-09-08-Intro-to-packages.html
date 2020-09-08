@@ -1,0 +1,72 @@
+---
+title: "Intro to packages"
+author: ~
+date: '2020-09-08'
+slug: "packages"
+categories: [notes]
+tags: [basics]
+draft: false
+# toc: true
+---
+
+
+
+<p>Like all programming languages, R relies on a <em>base</em> language, which is extended by <em>packages</em>. When you installed R, you only installed the base language<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. However, base R can only do so much.</p>
+<p>Most of R’s power lies is in its packages. Need to do timeseries forecasting? You’ll want the <a href=""><strong>forecast</strong></a> package. Need to do multivariate statistics? <a href=""><strong>vegan</strong></a> is world-leading. Currently there are more than 16,000 packages listed on <a href="https://cran.r-project.org/web/packages/index.html">CRAN</a> for basically every task you can imagine.</p>
+<div id="using-pacakges" class="section level2">
+<h2>Using pacakges</h2>
+<p>An R package is really just a collection of R code plus some accessory files that help you and R to know how to use that code, organized in a specific way. Later in the course we will build our own packages.</p>
+<p>In order to use a package, you must:</p>
+<ol style="list-style-type: decimal">
+<li><em>Install</em> the package, which is to say, download it from the internet and save it in an appropriate place on your hard drive, and</li>
+<li><em>Load</em> the package into your computer’s memory.</li>
+</ol>
+</div>
+<div id="installing-packages" class="section level2">
+<h2>Installing packages</h2>
+<p>You only have to install a package once - until you upgrade R, at which point you should reinstall your packages. R makes it easy to install packages from CRAN using the <code>install.packages()</code> function. For instance, to install the <strong>vegan</strong> package, type the following at the console:</p>
+<pre class="r"><code>install.packages(&quot;vegan&quot;)</code></pre>
+<p>Note the quotation marks around <code>"vegan"</code>. Note also that it will never make sense to put this in a script, since you don’t want to install a package every time you run a script. (And it is rather rude to share a script with someone else that installs a package without asking.) You should only ever run <code>install.packages()</code> from the R console.</p>
+<p><code>install.packages()</code> will download a package directly to your <em>library</em>, which is the name of the directory or directories that store your R packages. You can determine your library using the <code>.libPaths()</code> function - my library is at <code>"/Library/Frameworks/R.framework/Versions/4.0/Resources/library"</code>. It is also possible to install packages from places like GitHub using procedures we’ll talk about later.</p>
+</div>
+<div id="loading-packages" class="section level2">
+<h2>Loading packages</h2>
+<p>Every time you open RStudio, or change projects, you need to load whatever packages you’re going to use. The function <code>library()</code> loads a package<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<p>You should load each package your script needs at the top of the script, so that readers will know what packages the script uses. For instance:</p>
+<pre class="r"><code>#############
+# We always start scripts with a header comment
+#############
+
+# Load all packages that this script uses
+library(tidyverse)
+library(vegan)</code></pre>
+<p>Note that <code>library()</code> takes the name of the function <strong>without quotation marks</strong>, e.g. <code>library(vegan)</code>, while <code>install.packages()</code> takes the name of the package inside quotation marks, e.g. <code>install.packages("vegan")</code>.</p>
+<div id="what-library-does" class="section level3">
+<h3>What <code>library()</code> does</h3>
+<p>Strictly speaking, <code>library()</code> <em>attaches</em> a package to the search path, rather than loading it into memory. The search path is the set of directories that R will look through when you tell it to access a function. We can see a summary of our search path with the <code>search()</code> function. We’ll discuss more about what the search path does, but for now, try the following: type <code>search()</code> in the console, then load a new package using <code>library()</code>, and type <code>search()</code> again.</p>
+</div>
+</div>
+<div id="the-tidyverse" class="section level1">
+<h1>The <strong>tidyverse</strong></h1>
+<p><strong>tidyverse</strong> is kind of a weird package because it is three things at once:</p>
+<ul>
+<li>An R package, which exists to load a couple of dozen other R packages</li>
+<li>A name for the set of R packages that <strong>tidyverse</strong> loads, and</li>
+<li>A philosophy about how best to do data analysis.</li>
+</ul>
+<p>We’ll talk more about the philosophy and specific packages in <strong>tidyverse</strong> later. The thing to know for now is that <strong>using R with the tidyverse is very different from using base R</strong>. Tidyverse demands a fundamentally different way of thinking about data analysis. I happen to think that the tidyverse philosophy is a better way of thinking about data analysis, although <a href="https://blog.ephorie.de/why-i-dont-use-the-tidyverse">not</a> <a href="https://github.com/matloff/TidyverseSkeptic">all</a> <a href="https://towardsdatascience.com/a-thousand-gadgets-my-thoughts-on-the-r-tidyverse-2441d8504433">people</a> agree.</p>
+<p>Nevertheless, we are going to teach this course using the tidyverse philosophy, which you can learn more about on the <a href="https://www.tidyverse.org/">tidyverse website</a>. So, for this course, your scripts will just about always start with <code>library(tidyverse)</code>.</p>
+<div id="installing-vs-loading-packages" class="section level3">
+<h3>Installing vs loading packages</h3>
+</div>
+<div id="getting-help-on-packages" class="section level3">
+<h3>Getting help on packages</h3>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Strictly speaking there are a couple of packages that come with base R, including <strong>stats</strong>, <strong>graphics</strong>, and <strong>utils</strong>. By default those are also loaded when you start R, unlike other packages, so for all intents and purposes those act like they’re part of base R<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>You’ll also see <code>require()</code> used to load packages. This is mostly equivalent to <code>library()</code> but there are a few techical reasons, described <a href="https://yihui.org/en/2014/07/library-vs-require/">here</a>, to prefer <code>library()</code><a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
