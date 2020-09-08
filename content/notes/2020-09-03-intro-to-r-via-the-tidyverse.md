@@ -4,7 +4,7 @@ author: ~
 date: '2020-09-03'
 slug: intro-to-r-via-the-tidyverse
 categories: []
-tags: []
+tags: [basics, week02]
 subtitle: ''
 summary: ''
 authors: []
