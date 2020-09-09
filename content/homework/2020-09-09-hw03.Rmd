@@ -6,7 +6,6 @@ slug: "hw03"
 categories: [homework]
 tags: [week03]
 draft: false
-toc: true
 ---
 
 ```{r, setup, echo=TRUE}
