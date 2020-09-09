@@ -1,0 +1,92 @@
+---
+title: Class Style Guide
+date: '2020-09-08'
+slug: style-guide
+categories: [resources]
+tags: [week03]
+---
+
+
+
+<div id="style-is-substance" class="section level1">
+<h1>Style <em>is</em> substance</h1>
+<p>Donald Knuth famously wrote “Instead of imagining that our main task is to instruct a computer what to do, let us concentrate rather on explaining to human beings what we want a computer to do.” (<a href="http://www.literateprogramming.com/knuthweb.pdf">Knuth, 1983, Literate Programming</a>).</p>
+<p>Accordingly, it is important to write our code so that it is easily readable by humans. What defines easily readable? Well, it helps for the whole community of readers to be working from a common set of rules. <strong>We’ll adopt Hadley Wickham’s <a href="https://style.tidyverse.org/">tidyverse style guide</a> for our class</strong>, with a few points of emphasis listed below.</p>
+</div>
+<div id="important-parts-for-our-class" class="section level1">
+<h1>Important parts for our class</h1>
+<p>The tidyverse style guide is long and covers basically everything you could ever program in R. We mainly need to pay attention to sections:</p>
+<ul>
+<li><a href="https://style.tidyverse.org/files.html">1 (Files)</a></li>
+<li><a href="https://style.tidyverse.org/syntax.html">2 (Syntax)</a></li>
+<li><a href="https://style.tidyverse.org/pipes.html">4 (Pipes)</a></li>
+<li><a href="https://style.tidyverse.org/ggplot2.html">5 (ggplot2)</a>, and</li>
+<li><a href="https://style.tidyverse.org/gitgithub.html">10 (Git/GitHub)</a></li>
+</ul>
+<p>Here are a few points of emphasis for the start of our class.</p>
+<div id="commenting" class="section level2">
+<h2>Commenting</h2>
+<ul>
+<li>All scripts should begin with a block of comments that
+<ul>
+<li>Explain the general purpose of the script</li>
+<li>Reference the script to an assignment, if necessary (e.g., <code>For Homework 4</code>)</li>
+<li>Include the name of the author: not strictly necessary, but sometimes useful when we’re passing around scripts.</li>
+</ul></li>
+<li>The scope of the comment should be reflected by its position and the number of lines it occupies.
+<ul>
+<li>Script header comments are at least 3 lines:</li>
+</ul>
+<pre><code>  #########
+  # Script for Homework 3, basic visualization and input/output
+  #########</code></pre>
+<ul>
+<li>Comments that refer to a few lines of code will typically occupy a single line:</li>
+</ul>
+<pre><code># Read data preprocess data</code></pre>
+<ul>
+<li>Comments on a single part of a piped expression or plot should follow the relevant line. For instance:</li>
+</ul>
+<pre><code>  p &lt;- ggplot(mtcars, aes(x = mpg, y = qsec)) + 
+      geom_smooth(method = &quot;lm&quot;) + 
+      geom_point() + # points come after smooth so they&#39;re drawn on top of the line
+      theme_minimal()</code></pre></li>
+</ul>
+<div id="the-purpose-of-comments" class="section level3">
+<h3>The purpose of comments</h3>
+<p>A good comment explain <em>why</em> code is written, not <em>what</em> the code does or <em>how</em> it works. After all, if the code is written clearly, we should not need comments to tell what each line is doing.</p>
+<pre><code>### Bad
+
+# multiply m by a, assign it to F
+F &lt;- m * a
+
+### Good
+
+# Force = mass * acceleration
+F &lt;- m * a</code></pre>
+</div>
+</div>
+<div id="script-organization" class="section level2">
+<h2>Script organization</h2>
+<ol style="list-style-type: decimal">
+<li>Start with header comment</li>
+<li>Load all packages next</li>
+<li>Define any variables that are used throughout the script (e.g., <code>fig.width = 7.5</code>) and graphical theme (<code>theme_set(theme_classic())</code>)</li>
+<li>Organize the script in hierarchical sections, defined by comments</li>
+</ol>
+</div>
+<div id="object-names" class="section level2">
+<h2>Object names</h2>
+<ul>
+<li>Name lists, data frames, and function in <code>snake_case</code> using a <code>_</code> separator:
+<code>med_enzymes</code></li>
+<li>Name vectors in <code>snake.case</code> using a <code>.</code> separator: <code>site.temperatures</code></li>
+</ul>
+</div>
+<div id="modifications" class="section level2">
+<h2>Modifications</h2>
+<ul>
+<li>Please feel free to update this guide by forking <a href="https://github.com/adsteen/490_site_source">the website source code</a>, editing <a href="https://github.com/adsteen/490_site_source/blob/master/content/resources/2020-09-03-MICR-490-style-guide.Rmd">this file</a>, and issuing a pull request.</li>
+</ul>
+</div>
+</div>

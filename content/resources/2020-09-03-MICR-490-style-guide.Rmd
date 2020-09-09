@@ -80,4 +80,4 @@ F <- m * a
 
 ## Modifications
 
-* Please feel free to update this guide by forking [the website source code](https://github.com/adsteen/490_site_source), editing [this file]()
+* Please feel free to update this guide by forking [the website source code](https://github.com/adsteen/490_site_source), editing [this file](https://github.com/adsteen/490_site_source/blob/master/content/resources/2020-09-03-MICR-490-style-guide.Rmd), and issuing a pull request.

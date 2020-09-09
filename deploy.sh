@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 # This should be run from the source code directory, not from public
 
