@@ -10,25 +10,25 @@ toc: true
 ---
 
 ```{r, setup, echo=TRUE}
-library(tidyverse)
-
-d <- read_csv("../../static/data/chris_names_wide.csv")
-
-d_l <- d %>%
-  pivot_longer(-year, names_to = "sex")
-
-p1 <- ggplot(d_l, aes(x=year, y=value, colour = sex)) +
-  geom_line()
-print(p1)
-
-p2 <- ggplot(d_l, aes(x=year, y=value, colour = sex)) +
-  geom_point() +
-  geom_smooth(method = "loess")
-print(p2)
-
-p3 <- ggplot(d_l, aes(x=sex, y=value)) +
-  geom_boxplot()
-print(p3)
+# library(tidyverse)
+# 
+# d <- read_csv("../../static/data/chris_names_wide.csv")
+# 
+# d_l <- d %>%
+#   pivot_longer(-year, names_to = "sex")
+# 
+# p1 <- ggplot(d_l, aes(x=year, y=value, colour = sex)) +
+#   geom_line()
+# print(p1)
+# 
+# p2 <- ggplot(d_l, aes(x=year, y=value, colour = sex)) +
+#   geom_point() +
+#   geom_smooth(method = "loess")
+# print(p2)
+# 
+# p3 <- ggplot(d_l, aes(x=sex, y=value)) +
+#   geom_boxplot()
+# print(p3)
 
 #ggsave("../../static/plots/chris_line.png", p1, height = 3, width = 4, units = "in", dpi = 300)
 #ggsave("../../static/plots/chris_smooth.png", p2, height = 3, width = 4, units = "in", dpi = 3)
