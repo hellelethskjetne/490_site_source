@@ -1,0 +1,83 @@
+---
+title: Class Style Guide
+date: '2020-09-08'
+slug: style-guide
+categories: [resources]
+tags: [week03]
+---
+
+# Style *is* substance
+
+Donald Knuth famously wrote "Instead of imagining that our main task is to instruct a computer what to do, let us concentrate rather on explaining to human beings what we want a computer to do." ([Knuth, 1983, Literate Programming](http://www.literateprogramming.com/knuthweb.pdf)).
+
+Accordingly, it is important to write our code so that it is easily readable by humans. What defines easily readable? Well, it helps for the whole community of readers to be working from a common set of rules. **We'll adopt Hadley Wickham's [tidyverse style guide](https://style.tidyverse.org/) for our class**, with a few points of emphasis listed below.
+
+# Important parts for our class
+
+The tidyverse style guide is long and covers basically everything you could ever program in R. We mainly need to pay attention to sections:
+
+* [1 (Files)](https://style.tidyverse.org/files.html)
+* [2 (Syntax)](https://style.tidyverse.org/syntax.html)
+* [4 (Pipes)](https://style.tidyverse.org/pipes.html)
+* [5 (ggplot2)](https://style.tidyverse.org/ggplot2.html), and 
+* [10 (Git/GitHub)](https://style.tidyverse.org/gitgithub.html)
+
+Here are a few points of emphasis for the start of our class.
+
+## Commenting
+
+* All scripts should begin with a block of comments that
+    - Explain the general purpose of the script
+    - Reference the script to an assignment, if necessary (e.g., `For Homework 4`)
+    - Include the name of the author: not strictly necessary, but sometimes useful when we're passing around scripts.
+* The scope of the comment should be reflected by its position and the number of lines it occupies. 
+    - Script header comments are at least 3 lines:
+```
+    #########
+    # Script for Homework 3, basic visualization and input/output
+    #########
+```
+    - Comments that refer to a few lines of code will typically occupy a single line:
+    ```
+    # Read data preprocess data
+    ```
+    - Comments on a single part of a piped expression or plot should follow the relevant line. For instance:
+```
+    p <- ggplot(mtcars, aes(x = mpg, y = qsec)) + 
+        geom_smooth(method = "lm") + 
+        geom_point() + # points come after smooth so they're drawn on top of the line
+        theme_minimal()
+```
+
+### The purpose of comments
+
+A good comment explain *why* code is written, not *what* the code does or *how* it works. After all, if the code is written clearly, we should not need comments to tell what each line is doing. 
+
+```
+### Bad
+
+# multiply m by a, assign it to F
+F <- m * a
+
+### Good
+
+# Force = mass * acceleration
+F <- m * a
+```
+
+## Script organization
+
+1. Start with header comment
+2. Load all packages next
+3. Define any variables that are used throughout the script (e.g., `fig.width = 7.5`) and graphical theme (`theme_set(theme_classic())`)
+4. Organize the script in hierarchical sections, defined by comments
+
+## Object names
+
+* Name lists, data frames, and function in `snake_case` using a `_` separator: 
+`med_enzymes`
+* Name vectors in `snake.case` using a `.` separator: `site.temperatures`
+
+## Modifications
+
+* Please feel free to update this guide by forking [the website source code](https://github.com/adsteen/490_site_source), editing [this file]()
