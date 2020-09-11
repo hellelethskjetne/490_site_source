@@ -66,3 +66,7 @@ If you used the `chris_data_wide` dataset, create the following plots using **gg
 
 If you used your own data, use **ggplot2** to make 3 plots that show the data in different ways.
 
+# To submit
+
+Please submit the homework in the same way you submitted homework 2: by creating a `hw_0x` directory in your directory for this class, and save the your script as `hw_0x.R` (replacing `x` with the appropriate homework number). As before, no one gets their homework counted until everyone in the group can confirm that everyone else in the group has completed the homework.
+
