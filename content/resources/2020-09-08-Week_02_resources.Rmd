@@ -9,6 +9,9 @@ draft: false
 # toc: true
 ---
 
+Resources for week 2.
+<!--more-->
+
 ```{r setup, echo = FALSE}
 knitr::opts_chunk$set(eval=FALSE)
 ```

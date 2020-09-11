@@ -13,6 +13,9 @@ draft: false
 knitr::opts_chunk$set(eval=FALSE)
 ```
 
+Explains what an R package is, how to install and load them, and discusses a particularly important set of packages called the tidyverse.
+
+<!--more-->
 
 Like all programming languages, R relies on a *base* language, which is extended by *packages*. When you installed R, you only installed the base language^[Strictly speaking there are a couple of packages that come with base R, including **stats**, **graphics**, and **utils**. By default those are also loaded when you start R, unlike other packages, so for all intents and purposes those act like they're part of base R]. However, base R can only do so much. 
 
@@ -30,7 +33,7 @@ In order to use a package, you must:
 ## Installing packages
 
 You only have to install a package once - until you upgrade R, at which point you should reinstall your packages. R makes it easy to install packages from CRAN using the `install.packages()` function. For instance, to install the **vegan** package, type the following at the console:
-```{r}
+```{r, eval=FALSE}
 install.packages("vegan")
 ```
 Note the quotation marks around `"vegan"`. Note also that it will never make sense to put this in a script, since you don't want to install a package every time you run a script. (And it is rather rude to share a script with someone else that installs a package without asking.) You should only ever run `install.packages()` from the R console.
@@ -43,7 +46,7 @@ Every time you open RStudio, or change projects, you need to load whatever packa
 
 You should load each package your script needs at the top of the script, so that readers will know what packages the script uses. For instance:
 
-```{r}
+```{r, eval = FALSE}
 #############
 # We always start scripts with a header comment
 #############

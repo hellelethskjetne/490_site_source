@@ -13,6 +13,10 @@ draft: false
 knitr::opts_chunk$set(eval=FALSE)
 ```
 
+Introduces how to read documentation for R functions and packages, and how to get help from the internet.
+
+<!--more-->
+
 # Help on specific functions
 
 Every function in R has a an associated documentaion file. In RStudio, typing the name of the function, prefaced by `?`, will pull up the documentation for that function. For instance, try `?sum`[On my machine, RStudio sometimes gets over-excited about auto-completing and tries to fill in the name of a longer function. Just type backspace when that happens.] (you don't need the `()`):  in the lower-right-hand panel of RStudio you'll see a documentation displayed.

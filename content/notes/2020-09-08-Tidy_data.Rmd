@@ -1,0 +1,94 @@
+---
+title: "The importance of tidy data"
+author: ~
+date: '2020-09-11'
+slug: "tidy-data"
+categories: [notes]
+tags: [basics, week03]
+draft: false
+# toc: true
+---
+
+Introduces the idea of **tidy data**.
+
+<!--more-->
+
+```{r setup, echo = FALSE}
+knitr::opts_chunk$set(eval=TRUE)
+```
+
+# The meaning of *tidy*
+
+The tidyverse is so named because of its focus on *tidy data*. Wickham and Grolemund explain the meaning of tidy [here](https://r4ds.had.co.nz/tidy-data.html), but the essence is this:
+
+* Data sets are in stored in a 2-D table. In R, they should be in a data frame.
+* Each variable is in its own column.
+* Each observation is in its own row.
+* Each value has its own cell.
+
+
+This is mostly not how people tend to think about formatting data. In Excel, we often spread a single variable across multiple columns. Imagine we were tracking the height of children over time. We might make an Excel worksheet like this:
+
+
+
+```{r, eval=TRUE, echo=FALSE}
+grade <- 1:4
+Clara <- c(121, 127, 135, 141)
+Jamal <- c(115, 121, 126, 132)
+Stephanie <- c(112, 117, 123, 129)
+height_data <- data.frame(grade, Clara, Jamal, Stephanie)
+```
+
+```{r, echo=FALSE}
+height_data
+```
+
+
+This format makes it easy to make a timeseries plot like so:
+
+![](/notes/2020-09-08-Tidy_data_files/excel_height.png)
+
+However, these data are not tidy, because the variable of *height* is distributed across three columns. Additionally, some data - the names of the children - are encoded in the column names rather than in a column. 
+
+We refer to data formatted this way as *wide*. We can use the **tidyr** package (part of the tidyverse) to *pivot* the data to a *long* format like so:
+
+```{r, message=FALSE}
+library(tidyverse)
+height_data_long <- height_data %>% # we talk about the meaning of %>% in 'pipes'
+  pivot_longer(cols = -grade, names_to = "name", values_to = "height.cm")
+```
+
+We can read this 'code sentence' as 
+
+1. "Take the `height_data` data frame, pass it as the first argument to the `pivot_wider()` function 
+2. The columns to pivot are all except `grade`, we want to call the new column to identify the children "name" and the column with the data "height.cm"
+3. Finally assign the result to `height_data_long`. 
+
+We end up with a data frame that looks like this^[Note that when we used `pivot_wider()`, which is a tidyverse function, our data frame becomes a tibble, and it is displayed slightly differently - we get information about the data type of each vector.]:
+
+```{r, echo=FALSE}
+head(height_data_long)
+```
+
+Tidy! The three variables in this data set are `grade`, `name`, and `height.cm`. We can also say that this data set is 'long' compared to the first data set. 
+
+## Human vs machine readibility
+
+For me, it is tougher to read the data from a tidy, long-format data frame than an Excel-style wider data frame. However, it is much easier to understand the contents of a tidy data frame. You can tell what the data are like just by looking at the column names, since they contain everything we know about the data set. 
+
+# Split-apply-combine and tidy data
+
+The other major reason to use tidy data is that it facilitates the **split-apply-combine** approach to data analysis. This approach is described in [Wickham 2011](https://www.jstatsoft.org/article/view/v040i01). The basic idea is that virtually every statistical analysis involves the three following steps:
+
+* **splitting** a dataset up into parts
+* **applying** some kind of transformation
+* **combining** the results of that transformation
+
+For instance, imagine that we want to measure the growth rate of the children in the data set above. We would want to split the data into a data set for each child, apply the transformation of determining the rate of growth, and then combining the results into a data set of growth rates. 
+
+Tidy data frames make this splitting operation easy: we simply tell R to *split* the data according to the `name` column, *apply* the "calculate slope" transformation, and *combine* the data into a new data frame.
+
+The beauty of this approach is that we can plug in literally any calculation or set of calculations at the *apply* step. We'll talk more later about how we can do this in R, but for now I want you to think about:
+
+* What the data you work with would look like in tidy format, and
+* What transformations would you apply to get the kinds of answers you need?

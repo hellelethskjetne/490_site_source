@@ -1,0 +1,81 @@
+---
+title: "The importance of tidy data"
+author: ~
+date: '2020-09-11'
+slug: "tidy-data"
+categories: [notes]
+tags: [basics, week03]
+draft: false
+# toc: true
+---
+
+
+
+<p>Introduces the idea of <strong>tidy data</strong>.</p>
+<!--more-->
+<div id="the-meaning-of-tidy" class="section level1">
+<h1>The meaning of <em>tidy</em></h1>
+<p>The tidyverse is so named because of its focus on <em>tidy data</em>. Wickham and Grolemund explain the meaning of tidy <a href="https://r4ds.had.co.nz/tidy-data.html">here</a>, but the essence is this:</p>
+<ul>
+<li>Data sets are in stored in a 2-D table. In R, they should be in a data frame.</li>
+<li>Each variable is in its own column.</li>
+<li>Each observation is in its own row.</li>
+<li>Each value has its own cell.</li>
+</ul>
+<p>This is mostly not how people tend to think about formatting data. In Excel, we often spread a single variable across multiple columns. Imagine we were tracking the height of children over time. We might make an Excel worksheet like this:</p>
+<pre><code>##   grade Clara Jamal Stephanie
+## 1     1   121   115       112
+## 2     2   127   121       117
+## 3     3   135   126       123
+## 4     4   141   132       129</code></pre>
+<p>This format makes it easy to make a timeseries plot like so:</p>
+<p><img src="/notes/2020-09-08-Tidy_data_files/excel_height.png" /></p>
+<p>However, these data are not tidy, because the variable of <em>height</em> is distributed across three columns. Additionally, some data - the names of the children - are encoded in the column names rather than in a column.</p>
+<p>We refer to data formatted this way as <em>wide</em>. We can use the <strong>tidyr</strong> package (part of the tidyverse) to <em>pivot</em> the data to a <em>long</em> format like so:</p>
+<pre class="r"><code>library(tidyverse)
+height_data_long &lt;- height_data %&gt;% # we talk about the meaning of %&gt;% in &#39;pipes&#39;
+  pivot_longer(cols = -grade, names_to = &quot;name&quot;, values_to = &quot;height.cm&quot;)</code></pre>
+<p>We can read this ‘code sentence’ as</p>
+<ol style="list-style-type: decimal">
+<li>"Take the <code>height_data</code> data frame, pass it as the first argument to the <code>pivot_wider()</code> function</li>
+<li>The columns to pivot are all except <code>grade</code>, we want to call the new column to identify the children “name” and the column with the data “height.cm”</li>
+<li>Finally assign the result to <code>height_data_long</code>.</li>
+</ol>
+<p>We end up with a data frame that looks like this<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>:</p>
+<pre><code>## # A tibble: 6 x 3
+##   grade name      height.cm
+##   &lt;int&gt; &lt;chr&gt;         &lt;dbl&gt;
+## 1     1 Clara           121
+## 2     1 Jamal           115
+## 3     1 Stephanie       112
+## 4     2 Clara           127
+## 5     2 Jamal           121
+## 6     2 Stephanie       117</code></pre>
+<p>Tidy! The three variables in this data set are <code>grade</code>, <code>name</code>, and <code>height.cm</code>. We can also say that this data set is ‘long’ compared to the first data set.</p>
+<div id="human-vs-machine-readibility" class="section level2">
+<h2>Human vs machine readibility</h2>
+<p>For me, it is tougher to read the data from a tidy, long-format data frame than an Excel-style wider data frame. However, it is much easier to understand the contents of a tidy data frame. You can tell what the data are like just by looking at the column names, since they contain everything we know about the data set.</p>
+</div>
+</div>
+<div id="split-apply-combine-and-tidy-data" class="section level1">
+<h1>Split-apply-combine and tidy data</h1>
+<p>The other major reason to use tidy data is that it facilitates the <strong>split-apply-combine</strong> approach to data analysis. This approach is described in <a href="https://www.jstatsoft.org/article/view/v040i01">Wickham 2011</a>. The basic idea is that virtually every statistical analysis involves the three following steps:</p>
+<ul>
+<li><strong>splitting</strong> a dataset up into parts</li>
+<li><strong>applying</strong> some kind of transformation</li>
+<li><strong>combining</strong> the results of that transformation</li>
+</ul>
+<p>For instance, imagine that we want to measure the growth rate of the children in the data set above. We would want to split the data into a data set for each child, apply the transformation of determining the rate of growth, and then combining the results into a data set of growth rates.</p>
+<p>Tidy data frames make this splitting operation easy: we simply tell R to <em>split</em> the data according to the <code>name</code> column, <em>apply</em> the “calculate slope” transformation, and <em>combine</em> the data into a new data frame.</p>
+<p>The beauty of this approach is that we can plug in literally any calculation or set of calculations at the <em>apply</em> step. We’ll talk more later about how we can do this in R, but for now I want you to think about:</p>
+<ul>
+<li>What the data you work with would look like in tidy format, and</li>
+<li>What transformations would you apply to get the kinds of answers you need?</li>
+</ul>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Note that when we used <code>pivot_wider()</code>, which is a tidyverse function, our data frame becomes a tibble, and it is displayed slightly differently - we get information about the data type of each vector.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>

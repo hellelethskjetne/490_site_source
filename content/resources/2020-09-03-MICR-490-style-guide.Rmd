@@ -6,6 +6,10 @@ categories: [resources]
 tags: [week03]
 ---
 
+Explains why it is so important to format your code well, and how you are expected to format your code for this class.
+
+<!--more-->
+
 # Style *is* substance
 
 Donald Knuth famously wrote "Instead of imagining that our main task is to instruct a computer what to do, let us concentrate rather on explaining to human beings what we want a computer to do." ([Knuth, 1983, Literate Programming](http://www.literateprogramming.com/knuthweb.pdf)).
