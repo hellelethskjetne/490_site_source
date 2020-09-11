@@ -1,0 +1,11 @@
+---
+title: Week 3 Resources
+date: '2020-09-10'
+slug: week03-resources
+categories: [resources]
+tags: [week03]
+---
+
+* The RStudio list of [cheat sheets](https://rstudio.com/resources/cheatsheets/). The Data Import, Data Transformation, Data Visualization, and RStudio IDE cheat sheets will be particularly valuable to you.
+* R for Data Science [Chapter 3](https://r4ds.had.co.nz/data-visualisation.html)
+* Hadley Wickham on [Tidy data](https://vita.had.co.nz/papers/tidy-data.pdf). Note that this old-ish  paper uses the syntax of a package called **plyr**, which is a bit different from the tidyverse counterpart called **dplyr**. 

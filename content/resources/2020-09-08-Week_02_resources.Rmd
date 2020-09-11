@@ -13,8 +13,6 @@ draft: false
 knitr::opts_chunk$set(eval=FALSE)
 ```
 
-**to be updated**
-
 * This week has a bunch of R basics. Chapters [1](https://r4ds.had.co.nz/explore-intro.html) and [4](https://r4ds.had.co.nz/workflow-basics.html) of R for Data Science are a good place to start. However, I would like you all to practice your Git/Github skills by adding introductory references to this list.
 
 To do that:

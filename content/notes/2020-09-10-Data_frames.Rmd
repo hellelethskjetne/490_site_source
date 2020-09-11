@@ -1,0 +1,74 @@
+---
+title: "Data frames: Your new favorite data structure"
+author: ~
+date: '2020-09-10'
+slug: "data-frames"
+categories: [notes]
+tags: [week03]
+draft: false
+# toc: true
+---
+
+Discusses the data structure called data frames: what they are and why they are so important.
+
+<!--more-->
+
+```{r setup, echo=TRUE, message=FALSE}
+#library(tidyverse)
+#knitr::opts_chunk$set(eval=TRUE)
+```
+
+# Review of data structures
+
+In lecture on Wednesday, Sept 9, we discussed a key data structure in R: **vectors**^[Properly speaking, these are called atomic vectors. However, colloquially we refer to these as vectors.]. There are three important rules for vectors:
+
+* They are **1-dimensional**: think of them like a column of values.
+* They are **ordered**: there is a first element, a second element, etc.
+* They contain **a single data type**: a vector can be integer, double, logical, or character, but they can't be a mix of those. If a vector looks like it has a mix of data types, that's because it has been *coerced* to a more general type. For instance, `c(7, "aardvark")` will be coerced to a character vector: the number `7` will be converted to the character `"7"`.
+
+There are a two other data structures which are frequently used in base R, but not in the tidyverse:
+
+* **Matrix**: a 2-dimensional vector. This follows the same rules as vectors, but it has rows and columns.
+* **List**: I think of this like a bag, into which you can throw any data structure you want. (Lists are ordered, like vectors, so maybe it is an unusually well-ordered bag?) The first element of a list might be a character vector, the second might be a integer matrix, and the third might be another list (which might, in turn, contain more lists)! These are great when you have to keep track of non-parallel information about something. For instance, a linear model object contains the coefficients of the linear model,  the residuals, and all sorts of other information that comes in different data types and different lengths. The `lm()` function therefore returns a special kind of list to store all that information.
+
+# Data frames and tibbles
+
+A data frame is a special kind of list. Data frames must obey two rules:
+
+* The list can only contain **vectors**
+* Each vector must be the same **length**
+
+Therefore, data frames act like a rectangular table. For instance, here are  the first six rows of `mtcars`, a data frame  that is built into R's **datasets** package, which is autoloaded when you start R:
+
+```{r, echo = TRUE, eval = TRUE}
+head(mtcars) # head() prints the first 6 rows of adata frame
+```
+
+## Creating data frames
+
+We can create data frames manually from vectors using the `data.frame()` function. Recall that we can use `c()` (concatenate) to build vectors. We name the columns of the data frame using the arguments of the function: in the example below `x.col = x` says "take the vector x, and name it `x.col` in the new data frame.
+
+```{r}
+x <- c(1, 3, 5)
+y <- c("a", "c", "d")
+d <- data.frame(x.col = x, y.col = y)
+d
+```
+
+`d` looks like a data frame when it is printed out, but we really should check to be sure:
+
+```{r}
+str(d)
+```
+
+Note that `obs.` (short for observations) corresponds to 'rows' and `variables` corresponds to 'columns'. 
+
+Of course, it is pretty rare that we want to create data frames by hand^[Usually I do this when I am making a reproducible example, or when I am generating some example data to test some code]. More often, we read in a file, for instance a text file. The functions in the **readr** package like `read_csv()` (which reads a comma-separated value file).
+
+# Data frames vs tibbles
+
+The tidyverse is built around data frames. Basically, tidyverse wants you to use data frames whenever possible. Because data frames are so important, tidyverse defines a special kind of data frame: the **tibble**. (The name comes the function `tbl_df`, or table-data-frame). 
+
+For our purposes, tibbles are equivalent to data frames. Tibbles contain a little more information when printed out, and protect you a little more when you do something silly to them. But for our purposes, whenever you hear "tibble", you can think "data frame". 
+
+
