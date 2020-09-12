@@ -44,7 +44,7 @@ This homework, as well as homework 2, is due Wednesday Sept 16. Lecture notes co
 Use one of the [**readr**](https://readr.tidyverse.org/) functions (`read_csv()`, `read_delim()`, etc), read in either:
 
 * Some of your own data, or
-* The .csv file [here](/data/chris_data_wide.csv). This is a subset of the *babynames* dataset, which lists the number of babies registered with the US Social Security Administration by year, sex, and name. I have filtered it to only include babies named "Chris" and reformatted it. The `male` and `female` columns indicate numbers of male and female children, respectively. 
+* The .csv file [here](data_analysis_2020/data/chris_data_wide.csv). This is a subset of the *babynames* dataset, which lists the number of babies registered with the US Social Security Administration by year, sex, and name. I have filtered it to only include babies named "Chris" and reformatted it. The `male` and `female` columns indicate numbers of male and female children, respectively. 
 
 Be sure to check the check the Data Import Cheat Sheet [here](https://rstudio.com/resources/cheatsheets/). 
 
