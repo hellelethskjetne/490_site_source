@@ -7,36 +7,7 @@ tags: [week03]
 draft: false
 ---
 
-```{r, setup, echo=FALSE}
-# library(tidyverse)
-# 
-# d <- read_csv("../../static/data/chris_names_wide.csv")
-# 
-# d_l <- d %>%
-#   pivot_longer(-year, names_to = "sex")
-# 
-# p1 <- ggplot(d_l, aes(x=year, y=value, colour = sex)) +
-#   geom_line()
-# print(p1)
-# 
-# p2 <- ggplot(d_l, aes(x=year, y=value, colour = sex)) +
-#   geom_point() +
-#   geom_smooth(method = "loess")
-# print(p2)
-# 
-# p3 <- ggplot(d_l, aes(x=sex, y=value)) +
-#   geom_boxplot()
-# print(p3)
-
-#ggsave("../../static/plots/chris_line.png", p1, height = 3, width = 4, units = "in", dpi = 300)
-#ggsave("../../static/plots/chris_smooth.png", p2, height = 3, width = 4, units = "in", dpi = 3)
-#ggsave("../../static/plots/chris_box.png", p3, height = 3, width = 4, units = "in", dpi = 300)
-
-```
-
-
-This homework, as well as homework 2, is due Wednesday Sept 16. Lecture notes coming ASAP.
-
+This homework, as well as homework 2, is due Wednesday Sept 16. 
 <!--more-->
 
 # Input / Output
@@ -57,6 +28,7 @@ Convert your data to long (tidy) format. For the `chris_data_wide` dataset, that
 You will want to use the `pivot_wider()` function. Check the *Reshape Data* section of the [Data Import Cheat Sheet](https://rstudio.com/resources/cheatsheets/) for tips. 
 
 **UPDATE**
+
 I did y'all a dirty here. I didn't give you the full syntax for `pivot_wider()` because I wanted you to work on it a bit on your own. However, I meant to pivot you to `pivot_longer()`: after all, we want to turn `chris_data_wide` from wide-format to long format, so `pivot_longer()` is the function we want. 
 
 The syntax for this would be:
@@ -69,7 +41,7 @@ d_long <- pivot_longer(d,
 ```
 
 
-**end edit**
+**end update**
 
 # Plotting with ggplot2
 
