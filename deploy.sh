@@ -7,11 +7,11 @@ set -e
 
 printf "\033[0;32mDeploying updates to GitHub...\033[0m\n"
 
-# Commit changes to source code
-msg="rebuilding site $(date)"
-if [ -n "$*" ]; then
-        msg="$*"
-fi
+## Commit changes to source code
+#msg="rebuilding site $(date)"
+#if [ -n "$*" ]; then
+#        msg="$*"
+#fi
 
 
 
