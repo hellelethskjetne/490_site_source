@@ -13,3 +13,101 @@ draft: true
 knitr::opts_chunk$set(eval=FALSE)
 ```
 
+An R function is some R code that is encapsulated, so that it can be run all at once by the user. 
+
+<!--more-->
+
+# The food truck model of functions
+
+I like to think of functions as being like food trucks. With a food truck, you give your order to the person at the window, the person at the window passes some information to the cook, the cook does some stuff, and a few minutes they pass your order out. The key features are:
+
+* You pass some information into the truck.
+* Some stuff happens inside the truck, which you can't see.
+* The truck returns some food.
+
+Similarly, with an R function:
+
+* You pass some information (*parameters*) to the function.
+* Some stuff happens inside the function, which you can't see.
+* The function returns an *object*.
+
+Just as every short order cook has their own lingo - 
+
+One nice feature of R is that functions do everything - every 'verb' is a function. You an always identify a function because it has parentheses after the name: `c()` is the concatenate function; `c` might be any kind of object. So, if you want to do something - anything - you know you'll need to call a function, and `()` will be involved.
+
+# Creating your own functions
+
+To see why this food truck model is useful, let's write our own function. 
+
+We define a function by creating a function object using the `function()` function ([sorry](https://imgflip.com/i/4f1m56)). 
+
+```{r}
+my_fun <- function(x, y) {
+  z <- x+ y
+  z
+}
+```
+
+This function takes arguments `x` and `y` and returns the sum:
+
+```{r}
+my_fun(3, 4)
+
+```
+
+Importantly, though, we don't see what is going on inside the food truck, i.e. inside the function. To prove this, we'll use the `ls()` function to list what is in our environment:
+
+```{r}
+ls()
+```
+```{r}
+a <- 3
+b <- 4
+c <- my_fun(a, b)
+ls()
+```
+Notice that our workspace does not contain `x` or `y`. Much as a short order cook uses their own lingo to refer to what is going on inside a food truck, so that "two fried eggs with bacon" becomes "two dots and a dash" (at least according to [this](https://lifehacker.com/a-quick-lesson-in-essential-diner-lingo-1818975167) very dubious website), functions rename arguments when we pass them in. When we call the function, a new [environment](http://adv-r.had.co.nz/Environments.html#function-envs) pops into being. Inside the function's environment, we refer to objects by the name the function assigns to them (`x` and `y` in this example). Once the function returns its result, the function's environment disappears, leaving no record of `x` and `y`.
+
+This is useful for two reasons:
+
+### Simply perform complex operations 
+Consider the `lm()` function, which creates linear 'models' (regressions). To calculate an ordinary least-squares regression, we need to do some matrix algebra, and to call a bunch of code to handle potential errors, structure the way the results are returned, etc. Generally we don't want to know about that. Much simpler to call `lm()` than to, say, copy-paste all the code that requires. 
+
+Later in the course, we will see that wrapping code into our own functions is an important way to keep our code clean and easy-to-understand.
+
+### Keep our workspace clean
+
+In general, we want to avoid creating a million objects that will clutter up our workspace, for the same reason that we would keep a physical workspace clean - if there's too much junk lying around, it gets tough to tell which bits are important. Since a function only returns a single object, and all the other objects the function created but did not return disappear once the function is done executing, functions make it much easier to keep our workspace clean.
+
+
+
+# Functions really are objects
+
+*Everything* in R is an object, including functions. When we run `ggplot(data = mtcars)` we are calling the `ggplot` function, and passing the argument `mtcars` to it.
+
+Like most objects, functions have an auto-print method. Try typing `lm` (the name linear model function) at the console, but don't include the parentheses:
+
+```{r eval=FALSE}
+lm
+```
+
+We see all the R code that runs when we call `lm()`^[This doesn't work for all functions: [primitives](https://cran.r-project.org/doc/manuals/r-release/R-ints.html#g_t_002eInternal-vs-_002ePrimitive) are very basic R functions, like `c()` and `+`, that are written in the [C](https://en.wikipedia.org/wiki/C_(programming_language) language. They don't autoprint their code]. 
+
+
+# Operators
+
+There is a small exception to the 'functions always use `()`' rule: there are a few operators, like `+` and `^`, that are functions but allow you to call them using normal, easy-to-read math notation: 
+```{r}
+2 + 2
+```
+
+These are regular functions, but R allows us to 'break the rules' by calling them without parentheses. Interestingly, we can use backticks to call these functions using "normal" `()`-based syntax:
+
+```{r}
+`+`(2, 2)
+```
+
+This is useful if you want to make your code as confusing as possible, perhaps because you're angry with your collaborator / future self.
+
+
+

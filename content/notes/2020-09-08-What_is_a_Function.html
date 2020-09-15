@@ -11,4 +11,71 @@ draft: true
 
 
 
-
+<p>An R function is some R code that is encapsulated, so that it can be run all at once by the user.</p>
+<!--more-->
+<div id="the-food-truck-model-of-functions" class="section level1">
+<h1>The food truck model of functions</h1>
+<p>I like to think of functions as being like food trucks. With a food truck, you give your order to the person at the window, the person at the window passes some information to the cook, the cook does some stuff, and a few minutes they pass your order out. The key features are:</p>
+<ul>
+<li>You pass some information into the truck.</li>
+<li>Some stuff happens inside the truck, which you can’t see.</li>
+<li>The truck returns some food.</li>
+</ul>
+<p>Similarly, with an R function:</p>
+<ul>
+<li>You pass some information (<em>parameters</em>) to the function.</li>
+<li>Some stuff happens inside the function, which you can’t see.</li>
+<li>The function returns an <em>object</em>.</li>
+</ul>
+<p>Just as every short order cook has their own lingo -</p>
+<p>One nice feature of R is that functions do everything - every ‘verb’ is a function. You an always identify a function because it has parentheses after the name: <code>c()</code> is the concatenate function; <code>c</code> might be any kind of object. So, if you want to do something - anything - you know you’ll need to call a function, and <code>()</code> will be involved.</p>
+</div>
+<div id="creating-your-own-functions" class="section level1">
+<h1>Creating your own functions</h1>
+<p>To see why this food truck model is useful, let’s write our own function.</p>
+<p>We define a function by creating a function object using the <code>function()</code> function (<a href="https://imgflip.com/i/4f1m56">sorry</a>).</p>
+<pre class="r"><code>my_fun &lt;- function(x, y) {
+  z &lt;- x+ y
+  z
+}</code></pre>
+<p>This function takes arguments <code>x</code> and <code>y</code> and returns the sum:</p>
+<pre class="r"><code>my_fun(3, 4)</code></pre>
+<p>Importantly, though, we don’t see what is going on inside the food truck, i.e. inside the function. To prove this, we’ll use the <code>ls()</code> function to list what is in our environment:</p>
+<pre class="r"><code>ls()</code></pre>
+<pre class="r"><code>a &lt;- 3
+b &lt;- 4
+c &lt;- my_fun(a, b)
+ls()</code></pre>
+<p>Notice that our workspace does not contain <code>x</code> or <code>y</code>. Much as a short order cook uses their own lingo to refer to what is going on inside a food truck, so that “two fried eggs with bacon” becomes “two dots and a dash” (at least according to <a href="https://lifehacker.com/a-quick-lesson-in-essential-diner-lingo-1818975167">this</a> very dubious website), functions rename arguments when we pass them in. When we call the function, a new <a href="http://adv-r.had.co.nz/Environments.html#function-envs">environment</a> pops into being. Inside the function’s environment, we refer to objects by the name the function assigns to them (<code>x</code> and <code>y</code> in this example). Once the function returns its result, the function’s environment disappears, leaving no record of <code>x</code> and <code>y</code>.</p>
+<p>This is useful for two reasons:</p>
+<div id="simply-perform-complex-operations" class="section level3">
+<h3>Simply perform complex operations</h3>
+<p>Consider the <code>lm()</code> function, which creates linear ‘models’ (regressions). To calculate an ordinary least-squares regression, we need to do some matrix algebra, and to call a bunch of code to handle potential errors, structure the way the results are returned, etc. Generally we don’t want to know about that. Much simpler to call <code>lm()</code> than to, say, copy-paste all the code that requires.</p>
+<p>Later in the course, we will see that wrapping code into our own functions is an important way to keep our code clean and easy-to-understand.</p>
+</div>
+<div id="keep-our-workspace-clean" class="section level3">
+<h3>Keep our workspace clean</h3>
+<p>In general, we want to avoid creating a million objects that will clutter up our workspace, for the same reason that we would keep a physical workspace clean - if there’s too much junk lying around, it gets tough to tell which bits are important. Since a function only returns a single object, and all the other objects the function created but did not return disappear once the function is done executing, functions make it much easier to keep our workspace clean.</p>
+</div>
+</div>
+<div id="functions-really-are-objects" class="section level1">
+<h1>Functions really are objects</h1>
+<p><em>Everything</em> in R is an object, including functions. When we run <code>ggplot(data = mtcars)</code> we are calling the <code>ggplot</code> function, and passing the argument <code>mtcars</code> to it.</p>
+<p>Like most objects, functions have an auto-print method. Try typing <code>lm</code> (the name linear model function) at the console, but don’t include the parentheses:</p>
+<pre class="r"><code>lm</code></pre>
+<p>We see all the R code that runs when we call <code>lm()</code><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
+</div>
+<div id="operators" class="section level1">
+<h1>Operators</h1>
+<p>There is a small exception to the ‘functions always use <code>()</code>’ rule: there are a few operators, like <code>+</code> and <code>^</code>, that are functions but allow you to call them using normal, easy-to-read math notation:</p>
+<pre class="r"><code>2 + 2</code></pre>
+<p>These are regular functions, but R allows us to ‘break the rules’ by calling them without parentheses. Interestingly, we can use backticks to call these functions using “normal” <code>()</code>-based syntax:</p>
+<pre class="r"><code>`+`(2, 2)</code></pre>
+<p>This is useful if you want to make your code as confusing as possible, perhaps because you’re angry with your collaborator / future self.</p>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>This doesn’t work for all functions: <a href="https://cran.r-project.org/doc/manuals/r-release/R-ints.html#g_t_002eInternal-vs-_002ePrimitive">primitives</a> are very basic R functions, like <code>c()</code> and <code>+</code>, that are written in the [C](<a href="https://en.wikipedia.org/wiki/C_(programming_language)" class="uri">https://en.wikipedia.org/wiki/C_(programming_language)</a> language. They don’t autoprint their code<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
