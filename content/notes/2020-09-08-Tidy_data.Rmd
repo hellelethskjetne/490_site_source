@@ -4,7 +4,7 @@ author: ~
 date: '2020-09-11'
 slug: "tidy-data"
 categories: [notes]
-tags: [basics, week03]
+tags: [data wrangling, week04]
 draft: false
 # toc: true
 ---

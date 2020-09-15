@@ -4,7 +4,7 @@ author: ~
 date: '2020-09-08'
 slug: "help"
 categories: [notes]
-tags: [basics, week02]
+tags: [basics, week03]
 draft: false
 # toc: true
 ---
