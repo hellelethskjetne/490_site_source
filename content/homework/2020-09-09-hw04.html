@@ -1,0 +1,51 @@
+---
+title: "Homework 4"
+date: '2020-09-09'
+slug: "hw04"
+categories: [homework]
+tags: [week04]
+draft: false
+---
+
+
+
+<p>This homework, as well as homework 2, is due Wednesday Sept 16.
+<!--more--></p>
+<div id="input-output" class="section level1">
+<h1>Input / Output</h1>
+<p>Use one of the <a href="https://readr.tidyverse.org/"><strong>readr</strong></a> functions (<code>read_csv()</code>, <code>read_delim()</code>, etc), read in either:</p>
+<ul>
+<li>Some of your own data, or</li>
+<li>The .csv file <a href="https://raw.githubusercontent.com/adsteen/490_site_source/master/static/homework/hw_03/chris_names_wide.csv">here</a> (you’ll want to right-click and ‘download file’). This is a subset of the <em>babynames</em> dataset, which lists the number of babies registered with the US Social Security Administration by year, sex, and name. I have filtered it to only include babies named “Chris” and reformatted it. The <code>male</code> and <code>female</code> columns indicate numbers of male and female children, respectively.</li>
+</ul>
+<p>Be sure to check the check the Data Import Cheat Sheet <a href="https://rstudio.com/resources/cheatsheets/">here</a>.</p>
+<p>Save the data file with a logical file name to a new directory, <code>reproducible_data_analysis/data</code>.</p>
+</div>
+<div id="wide-vs-long-tidy-data" class="section level1">
+<h1>Wide vs long (tidy) data</h1>
+<p>Convert your data to long (tidy) format. For the <code>chris_data_wide</code> dataset, that means you should have a column for the year, a column for the number of babies, and a column for the sex of the baby (male vs female).</p>
+<p>You will want to use the <code>pivot_wider()</code> function. Check the <em>Reshape Data</em> section of the <a href="https://rstudio.com/resources/cheatsheets/">Data Import Cheat Sheet</a> for tips.</p>
+<p><strong>UPDATE</strong></p>
+<p>I did y’all a dirty here. I didn’t give you the full syntax for <code>pivot_wider()</code> because I wanted you to work on it a bit on your own. However, I meant to pivot you to <code>pivot_longer()</code>: after all, we want to turn <code>chris_data_wide</code> from wide-format to long format, so <code>pivot_longer()</code> is the function we want.</p>
+<p>The syntax for this would be:</p>
+<pre class="r"><code>d &lt;- read_csv(&quot;data/chris_data_wide.csv&quot;)
+d_long &lt;- pivot_longer(d, 
+                       cols = -year, 
+                       names_to = &quot;sex&quot;, 
+                       values_to = &quot;n&quot;)</code></pre>
+<p><strong>end update</strong></p>
+</div>
+<div id="plotting-with-ggplot2" class="section level1">
+<h1>Plotting with ggplot2</h1>
+<p>If you used the <code>chris_data_wide</code> dataset, create the following plots using <strong>ggplot2</strong>:</p>
+<ul>
+<li>A line plot with year on the x axis, the number of babies on the y axis, and a different color for each sex</li>
+<li>A plot with the same axes, but with a “loess”-smoothed line representing the data</li>
+<li>A boxplot with sex on the x axis and the number of people with that name on the y-axis.</li>
+</ul>
+<p>If you used your own data, use <strong>ggplot2</strong> to make 3 plots that show the data in different ways.</p>
+</div>
+<div id="to-submit" class="section level1">
+<h1>To submit</h1>
+<p>Please submit the homework in the same way you submitted homework 2: by creating a <code>hw_0x</code> directory in your directory for this class, and save the your script as <code>hw_0x.R</code> (replacing <code>x</code> with the appropriate homework number). As before, no one gets their homework counted until everyone in the group can confirm that everyone else in the group has completed the homework.</p>
+</div>

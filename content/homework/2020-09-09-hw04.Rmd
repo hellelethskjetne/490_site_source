@@ -1,0 +1,59 @@
+---
+title: "Homework 4"
+date: '2020-09-09'
+slug: "hw04"
+categories: [homework]
+tags: [week04]
+draft: false
+---
+
+This homework, as well as homework 2, is due Wednesday Sept 16. 
+<!--more-->
+
+# Input / Output
+
+Use one of the [**readr**](https://readr.tidyverse.org/) functions (`read_csv()`, `read_delim()`, etc), read in either:
+
+* Some of your own data, or
+* The .csv file <a href="https://raw.githubusercontent.com/adsteen/490_site_source/master/static/homework/hw_03/chris_names_wide.csv">here</a> (you'll want to right-click and 'download file'). This is a subset of the *babynames* dataset, which lists the number of babies registered with the US Social Security Administration by year, sex, and name. I have filtered it to only include babies named "Chris" and reformatted it. The `male` and `female` columns indicate numbers of male and female children, respectively. 
+
+Be sure to check the check the Data Import Cheat Sheet [here](https://rstudio.com/resources/cheatsheets/). 
+
+Save the data file with a logical file name to a new directory, `reproducible_data_analysis/data`.
+
+# Wide vs long (tidy) data
+
+Convert your data to long (tidy) format. For the `chris_data_wide` dataset, that means you should have a column for the year, a column for the number of babies, and a column for the sex of the baby (male vs female). 
+
+You will want to use the `pivot_wider()` function. Check the *Reshape Data* section of the [Data Import Cheat Sheet](https://rstudio.com/resources/cheatsheets/) for tips. 
+
+**UPDATE**
+
+I did y'all a dirty here. I didn't give you the full syntax for `pivot_wider()` because I wanted you to work on it a bit on your own. However, I meant to pivot you to `pivot_longer()`: after all, we want to turn `chris_data_wide` from wide-format to long format, so `pivot_longer()` is the function we want. 
+
+The syntax for this would be:
+```{r eval=FALSE}
+d <- read_csv("data/chris_data_wide.csv")
+d_long <- pivot_longer(d, 
+                       cols = -year, 
+                       names_to = "sex", 
+                       values_to = "n")
+```
+
+
+**end update**
+
+# Plotting with ggplot2
+
+If you used the `chris_data_wide` dataset, create the following plots using **ggplot2**:
+
+* A line plot with year on the x axis, the number of babies on the y axis, and a different color for each sex
+* A plot with the same axes, but with a "loess"-smoothed line representing the data
+* A boxplot with sex on the x axis and the number of people with that name on the y-axis.
+
+If you used your own data, use **ggplot2** to make 3 plots that show the data in different ways.
+
+# To submit
+
+Please submit the homework in the same way you submitted homework 2: by creating a `hw_0x` directory in your directory for this class, and save the your script as `hw_0x.R` (replacing `x` with the appropriate homework number). As before, no one gets their homework counted until everyone in the group can confirm that everyone else in the group has completed the homework.
+

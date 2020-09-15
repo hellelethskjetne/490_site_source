@@ -1,0 +1,44 @@
+---
+title: "Homework 5"
+date: '2020-09-15'
+slug: "hw05"
+categories: [homework]
+tags: [week05]
+draft: false
+---
+
+
+
+<p>Homework to practice data transformation, exploration, and plotting.
+<!--more--></p>
+<div id="setup" class="section level1">
+<h1>Setup</h1>
+<p>This homework uses the <code>flights</code> data set from the <code>nycflights13</code> package. Make sure to install the package (once) and load it (each time you start a new R session):</p>
+<pre class="r"><code>install.packages(&quot;nycflights13&quot;)
+library(nycflights13)</code></pre>
+</div>
+<div id="using-rmarkdown" class="section level1">
+<h1>Using RMarkdown</h1>
+<p>You will submit this homework by creating an RMarkdown document, and posting the resulting markdown file to your github repository (`homework/hw_05/hw_05.md). Be sure to review the markdown lessons <a href="https://rmarkdown.rstudio.com/lesson-1.html">here</a>.</p>
+<p>**Your RMarkdown file should contain the code you use to answer the questions,
+the results of that code, and some text to explain what is going on.</p>
+<p>A couple of important notes:</p>
+<ul>
+<li>Create a new RMarkdown document from RStudio, <code>File -&gt; New File -&gt; R Notebook</code>. This will create an RMarkdown (.Rmd) file with some example text that you can delete (but maybe pay attention to it to learn more about how RMarkdown works.)</li>
+<li><strong>Change the output in the page header to <code>output: github_document</code></strong>. This will cause RStudio to ‘knit’ the .Rmd file to a <em>GitHub-flavored markdown</em> file with the extension .md, rather than the default HTML. RStudio can also ‘knit’ to PDF and Word documents, which is pretty handy in other situations.</li>
+<li>When you are done with the homework, press <code>knit</code> in RStudio to create the homework.</li>
+<li><strong>knitr</strong> creates an image file for each plot in your RMarkdown document. If your document is called <code>hw_05.Rmd</code>, it will create a couple of directories to save the image - something like <code>hw_05/hw_05-files/figure-markdown_strict/unnamed-chunk-1.png</code>. Be sure to add these to your git repository and push them to github along with the .Rmd and .md files, so that I can see them.</li>
+</ul>
+</div>
+<div id="split-apply-combine" class="section level1">
+<h1>Split-apply-combine</h1>
+<ol style="list-style-type: decimal">
+<li>Use <code>?nycflights13::flights</code> to see the documentation of flights. (You can’t really show this in an RMarkdown document, but please do it.)</li>
+<li>Use the <code>glimpse()</code> function to get a general sense of the <code>flights</code> data frame. How many rows and columns does <code>flights</code> have?</li>
+<li>Use <code>filter()</code> to create a data frame of just the flights that departed 2 hours late or more. What fraction of flights departed at least 2 hours late?</li>
+<li>Use <code>mutate()</code> and <code>paste0()</code> to create a column that contains the combined airline and flight number (e.g., “UA5041”).</li>
+<li>Use <code>group_by()</code>, <code>summarise()</code>, and <code>n()</code> to make a data frame showing how many flights each aircraft (<code>tail_num()</code>) flew for each carrier throughout the whole data set.</li>
+</ol>
+<p>If you do the last question correctly, you will get a confusing message like this: <code>\</code>summarise()` regrouping output by ‘carrier’ (override with `.groups` argument)`</p>
+<p>This ominous-looking warning is telling you that <code>summarise()</code> is returning a data frame that is grouped by <code>carrier</code>- which makes sense. <code>summarise()</code> creates a data frame with 1 row for each combination of grouping variables, but we probably don’t want our output to have each row in a separate group.</p>
+</div>
