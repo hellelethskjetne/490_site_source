@@ -60,11 +60,11 @@ height_data_long &lt;- height_data %&gt;% # we talk about the meaning of %&gt;% 
 <div id="split-apply-combine-and-tidy-data" class="section level1">
 <h1>Split-apply-combine and tidy data</h1>
 <p>The other major reason to use tidy data is that it facilitates the <strong>split-apply-combine</strong> approach to data analysis. This approach is described in <a href="https://www.jstatsoft.org/article/view/v040i01">Wickham 2011</a>. The basic idea is that virtually every statistical analysis involves the three following steps:</p>
-<ul>
+<ol style="list-style-type: decimal">
 <li><strong>splitting</strong> a dataset up into parts</li>
 <li><strong>applying</strong> some kind of transformation</li>
 <li><strong>combining</strong> the results of that transformation</li>
-</ul>
+</ol>
 <p>For instance, imagine that we want to measure the growth rate of the children in the data set above. We would want to split the data into a data set for each child, apply the transformation of determining the rate of growth, and then combining the results into a data set of growth rates.</p>
 <p>Tidy data frames make this splitting operation easy: we simply tell R to <em>split</em> the data according to the <code>name</code> column, <em>apply</em> the “calculate slope” transformation, and <em>combine</em> the data into a new data frame.</p>
 <p>The beauty of this approach is that we can plug in literally any calculation or set of calculations at the <em>apply</em> step. We’ll talk more later about how we can do this in R, but for now I want you to think about:</p>

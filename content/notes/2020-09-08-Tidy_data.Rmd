@@ -80,9 +80,9 @@ For me, it is tougher to read the data from a tidy, long-format data frame than 
 
 The other major reason to use tidy data is that it facilitates the **split-apply-combine** approach to data analysis. This approach is described in [Wickham 2011](https://www.jstatsoft.org/article/view/v040i01). The basic idea is that virtually every statistical analysis involves the three following steps:
 
-* **splitting** a dataset up into parts
-* **applying** some kind of transformation
-* **combining** the results of that transformation
+1. **splitting** a dataset up into parts
+2. **applying** some kind of transformation
+3. **combining** the results of that transformation
 
 For instance, imagine that we want to measure the growth rate of the children in the data set above. We would want to split the data into a data set for each child, apply the transformation of determining the rate of growth, and then combining the results into a data set of growth rates. 
 

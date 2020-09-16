@@ -1,0 +1,44 @@
+---
+title: Intro to RMarkdown
+author: ~
+date: '2020-09-15'
+slug: intro-to-rmarkdown
+categories: [rmarkdown]
+tags: [week05]
+draft: false
+---
+
+
+
+<p>Intro to the RMarkdown + knitr system for creating reproducible documents.ß</p>
+<!--more-->
+<p>This week we will begin working in RMarkdown.</p>
+<p>RMarkdown is two tools wrapped into one:</p>
+<ul>
+<li><strong>markdown</strong>, a markup language that allows you to easily create formatted documents like web pages from plain text documents</li>
+<li><strong>knitr</strong>, a tool that executes R code and integrates the results with markdown text.</li>
+</ul>
+<p>Together, these allow us to write nicely-formatted documents that mix text with R code, and the results of the R code. The resulting documents are very reproducible, in the sense that we see exactly how the raw data get turned into results. Additionally, the fact that the RMarkdown source document (.Rmd file) is just a plain text file means that we can use version control to track changes in our document and collaborate with others. <a href="https://twitter.com/PatSchloss/status/1305551736359223296">Pat Schloss’ lab</a> writes all of their documents in RMarkdown!</p>
+<p>I won’t try to recapitulate the excellent overview of RMarkdown that RStudio has put together <a href="https://rmarkdown.rstudio.com/">here</a> or the RMarkdown <a href="https://r4ds.had.co.nz/r-markdown.html">chapter</a> in Grolemund and Wickham. Please go read those now.</p>
+<p>Done reading? Good. I want to highlight a couple of points about RMarkdown:</p>
+<ul>
+<li><p>The way the RMarkdown system in RStudio works is that. when we press “knit”:</p>
+<ul>
+<li>RStudio launches a new R session to evaluate the R code</li>
+<li><strong>knitr</strong> creates a markdown file that contains the markdown text we wrote plus the code we wrote and the output from the code we wrote.</li>
+<li>RStudio uses a tool called <a href="https://pandoc.org/">pandoc</a> to convert the markdown file into whatever type of output file we specify in the RMarkdown header. Most often this will be an HTML file (web page), a PDF file, or a Word document.</li>
+</ul></li>
+<li><p>It turns out that GitHub knows how to interpret a specific ‘flavor’ of markdown called “GitHub-flavored markdown”. Since you’ll be posting your homework to GitHub, you should output GitHub-flavored markdown files. To do that, put the following in your RMarkdown file header: <code>output: github_document</code>.</p></li>
+<li><p>RStudio creates a <strong>new R session</strong> to run your code. That has a couple of implications:</p>
+<ul>
+<li>Any objects you may have created in your global environment (i.e., what you type at the console) won’t be available to the R session that executes the code in your RMarkdown document. Similarly, you have to load all the packages you need in the RMarkdown document itself. <strong>An RMarkdown document must be entirely self-contained</strong>.</li>
+<li>The R session that executes the code uses, as its working directory, whatever directory the .Rmd file is saved in. Imagine you are working in an RStudio Project called <code>reproducible_data_analysis</code>, which is structured like this:</li>
+</ul>
+<pre><code>reproducible_data_analysis
+  |--data
+      |--my_data.csv
+  |--reports
+      |--my_report.Rmd</code></pre>
+<p>This is a nice logical way to structure your directory, but since the <code>my_report.Rmd</code> file is saved in <code>reproducible_data_analysis/reports</code>, the working directory for the R code in your <code>my_report.Rmd</code> will be <code>reproducible_data_analysis/reports</code>. However, as you write the code, you will probably be executing it line-by-line. When you execute the code at the console, the working directory will be <code>reproducible_data_analysis</code>. So if you want to read in <code>my_data.csv</code> from the console, you might use <code>read_csv("data/my_data.csv")</code>. But when you read it in when you knit the .Rmd, you would use the path <code>"../data/my_data.csv"</code>.</p></li>
+<li><p>Remember that the R code in your RMarkdown document runs in a different R session than what you see in the console. That means that the R code in your R Markdown document needs to be totally self-contained - objects you define in the console will not be available to the R session that creates the document. (This is a good thing: it forces the document to be more reproducible.)</p></li>
+</ul>
