@@ -10,7 +10,7 @@ draft: false
 ---
 
 Resources for week 2.
-<!--more-->
+<https://rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf>
 
 ```{r setup, echo = FALSE}
 knitr::opts_chunk$set(eval=FALSE)
